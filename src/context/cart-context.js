@@ -8,7 +8,6 @@ const CartProvider = ({ children }) => {
   const [savedItems, setSavedItems] = useState([]);
 
   const addToCart = (cartItem) => {
-    debugger;
     const foundItem = cart.find((item) => item.id === cartItem.id);
     if (foundItem) {
       let newCart = cart.map((item) => {
@@ -53,6 +52,27 @@ const CartProvider = ({ children }) => {
 
     setCart(newCart);
   };
+
+  const saveForLater = (itemID) => {
+    const foundItem = cart.find((item) => item.id === itemID);
+    savedItems.push(foundItem);
+    setSavedItems(savedItems);
+    removeFromCart(itemID);
+  };
+
+  const moveBackToCart = (itemID) => {
+    const foundItem = savedItems.find((item) => item.id === itemID);
+    addToCart(foundItem);
+    removeFromSavedItems(itemID);
+  };
+
+  const removeFromSavedItems = (itemID) => {
+    let newSavedItems = savedItems.filter(
+      (savedItem) => savedItem.id !== itemID
+    );
+    setSavedItems(newSavedItems);
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -62,6 +82,9 @@ const CartProvider = ({ children }) => {
         removeFromCart,
         incrementItem,
         decrementItem,
+        saveForLater,
+        moveBackToCart,
+        removeFromSavedItems,
       }}
     >
       {children}

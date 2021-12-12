@@ -4,11 +4,11 @@ import { useCartContext } from "../../context/cart-context";
 const OrderDetails = () => {
   const { cart } = useCartContext();
   const totalPrice = cart.reduce((totalPrice, currentItem) => {
-    return (totalPrice += currentItem.price);
+    return (totalPrice += currentItem.qty * currentItem.price);
   }, 0);
 
   const totalDiscount = cart.reduce((totalDiscount, currentItem) => {
-    return (totalDiscount += currentItem.discount);
+    return (totalDiscount += currentItem.qty * currentItem.discount);
   }, 0);
 
   const totalAmount = totalPrice - totalDiscount;
