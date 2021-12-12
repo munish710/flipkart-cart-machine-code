@@ -7,8 +7,8 @@ const OrderDetails = () => {
     return (totalPrice += currentItem.price);
   }, 0);
 
-  const totalDiscount = cart.reduce((totalPrice, currentItem) => {
-    return (totalPrice += currentItem.discount);
+  const totalDiscount = cart.reduce((totalDiscount, currentItem) => {
+    return (totalDiscount += currentItem.discount);
   }, 0);
 
   const totalAmount = totalPrice - totalDiscount;
