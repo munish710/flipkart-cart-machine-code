@@ -1,0 +1,24 @@
+.product-card {
+  padding: 1rem 0.75rem;
+  border-radius: var(--radius);
+  display: grid;
+  grid-template-rows: 3fr 1fr;
+  border: 1px solid var(--clr-grey-8);
+  box-shadow: var(--light-shadow);
+}
+
+.product-image {
+  width: 100%;
+  height: 300px;
+  object-fit: contain;
+}
+
+.product-info {
+  padding-top: 2rem;
+}
+
+.product-info h5,
+p {
+  letter-spacing: normal;
+  margin-bottom: 0;
+}
